@@ -12,7 +12,8 @@ const createEntry = (entry) => {
     fetch(`${URL}/entries`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
         },
         body: JSON.stringify(entry)
     }).then((result) => {
@@ -61,6 +62,7 @@ const updateEntry = (entry) => {
 // Rendering
 const resetForm = () => {
     const entryForm = document.querySelector('#entryForm');
+    localStorage.getItem("token");
     entryForm.reset();
     mode = 'create';
     currentEntry = null;
@@ -71,7 +73,7 @@ const saveForm = (e) => {
     const formData = new FormData(e.target);
     const entry = {};
     entry['checkIn'] = dateAndTimeToDate(formData.get('checkInDate'), formData.get('checkInTime'));
-    entry['checkOut'] = dateAndTimeToDate(formData.get('checkOutDate'), formData.get('checkOutTime'));
+    entry['km'] = toString('km');
 
     if (mode === 'create') {
         createEntry(entry);
@@ -91,10 +93,8 @@ const editEntry = (entry) => {
     checkInDateField.value = entry.checkIn.split('T')[0];
     const checkInTimeField = entryForm.querySelector('[name="checkInTime"]');
     checkInTimeField.value = entry.checkIn.split('T')[1].slice(0, -3);
-    const checkOutDateField = entryForm.querySelector('[name="checkOutDate"]');
-    checkOutDateField.value = entry.checkOut.split('T')[0];
-    const checkOutTimeField = entryForm.querySelector('[name="checkOutTime"]');
-    checkOutTimeField.value = entry.checkOut.split('T')[1].slice(0, -3);
+    const kmField = entryForm.querySelector('[name="km"]');
+    kmField.value = entry.km.split('T')[0];
 }
 
 const createCell = (text) => {
@@ -126,7 +126,7 @@ const renderEntries = () => {
         const row = document.createElement('tr');
         row.appendChild(createCell(entry.id));
         row.appendChild(createCell(new Date(entry.checkIn).toLocaleString()));
-        row.appendChild(createCell(new Date(entry.checkOut).toLocaleString()));
+        row.appendChild(createCell(new Date(entry.km).toLocaleString()));
         row.appendChild(createActions(entry));
         display.appendChild(row);
     });

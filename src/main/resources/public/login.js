@@ -14,6 +14,7 @@ const loginUser = (entry) => {
         body: JSON.stringify(entry)
     }).then((result) => {
         if (result.ok) {
+            localStorage.setItem('token', result.headers.get("Authorization"));
             window.location.replace(`${URL}/index.html`);
         }
     });
