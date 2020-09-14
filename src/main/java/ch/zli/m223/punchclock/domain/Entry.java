@@ -23,6 +23,11 @@ public class Entry {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @Column(nullable = false)
+
+    @ManyToOne
+    @JoinColumn(name = "FK_ApplicationUser")
+    private ApplicationUser user;
+
     private LocalDateTime checkOut;
 
     public Long getId() {
