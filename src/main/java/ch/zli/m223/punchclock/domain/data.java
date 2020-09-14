@@ -3,38 +3,38 @@ import java.sql.DriverManager;
 import java.sql.SQLException; 
 import java.sql.Statement;  
 
-class H2jdbcInsert {
+class H2jdbcInsert { 
    // JDBC driver name and database URL 
    static final String JDBC_DRIVER = "org.h2.Driver";   
-   static final String DB_URL = "jdbc:h2:file:./punchclock";
+   static final String DB_URL = "jdbc:h2:file:./punchclock";  
    
    //  Database credentials 
    static final String USER = "sa"; 
-   static final String PASS = "password";
+   static final String PASS = "password"; 
   
    public static void main(String[] args) { 
       Connection conn = null; 
       Statement stmt = null; 
       try{
-         // Register JDBC driver
+         // Register JDBC driver 
          Class.forName(JDBC_DRIVER);  
          
-         // Open a connection
+         // Open a connection 
          System.out.println("Connecting to a selected database..."); 
          conn = DriverManager.getConnection(DB_URL,USER,PASS); 
          System.out.println("Connected database successfully..."); 
          
-         // Execute a query
+         // Execute a query 
          stmt = conn.createStatement();  
-         String sql = "INSERT INTO ApplicationUser " + "VALUES ('Testuser', 'testpassword')";
+         String sql = "INSERT INTO ApplicationUser " + "VALUES ('Testuser', 'testpassword')"; 
          
          stmt.executeUpdate(sql); 
-         sql = "INSERT INTO Entry " + "VALUES ('23-09-2020 12:12', 20)";
-
+         sql = "INSERT INTO Entry " + "VALUES ('23-09-2020 12:12', 20)";  
+         
          stmt.executeUpdate(sql); 
          System.out.println("Inserted records into the table...");
 
-         // Execute another query
+         // Execute another query 
          stmt = conn.createStatement();
          String sql2 = "INSERT INTO ApplicationUser " + "VALUES ('Athlete', 'athlete')";
 
@@ -44,14 +44,14 @@ class H2jdbcInsert {
          stmt.executeUpdate(sql2);
          System.out.println("Inserted records into the table...");
 
-         // Clean-up environment
+         // Clean-up environment 
          stmt.close(); 
          conn.close(); 
       } catch(SQLException se) { 
          // Handle errors for JDBC 
          se.printStackTrace(); 
       } catch(Exception e) { 
-         e.printStackTrace();
+         e.printStackTrace(); 
       } finally { 
          // finally block used to close resources 
          try {
