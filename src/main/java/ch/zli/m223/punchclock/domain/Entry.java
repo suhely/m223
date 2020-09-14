@@ -20,15 +20,25 @@ public class Entry {
     @Column(nullable = false)
     private LocalDateTime checkIn;
 
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @Column(nullable = false)
+    private Integer km;
 
-    @ManyToOne
-    @JoinColumn(name = "FK_ApplicationUser")
-    private ApplicationUser user;
+//    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+//    @JsonSerialize(using = LocalDateTimeSerializer.class)
+//    @Column(nullable = false)
+//    private LocalDateTime checkOut;
 
-    private LocalDateTime checkOut;
+//    @ManyToOne
+//    @JoinColumn(name = "FK_ApplicationUser")
+//    private ApplicationUser user;
+
+//    public void setUser(ApplicationUser user) {
+//        this.user = user;
+//    }
+//
+//    public ApplicationUser getUser() {
+//        return user;
+//    }
+
 
     public Long getId() {
         return id;
@@ -46,11 +56,12 @@ public class Entry {
         this.checkIn = checkIn;
     }
 
-    public LocalDateTime getCheckOut() {
-        return checkOut;
+    public Integer getKm() {
+        return km;
     }
 
-    public void setCheckOut(LocalDateTime checkOut) {
-        this.checkOut = checkOut;
+    public void setKm(Integer km) {
+        this.km = km;
     }
+    
 }
