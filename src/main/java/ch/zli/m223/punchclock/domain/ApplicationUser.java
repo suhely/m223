@@ -15,6 +15,18 @@ public class ApplicationUser {
     private List<Entry> entries;
 
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
+    public void setEntries(List<Entry> entries) {
+        this.entries = entries;
+    }
+
     public long getId() {
         return id;
     }
