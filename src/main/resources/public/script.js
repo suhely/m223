@@ -70,7 +70,7 @@ const resetForm = () => {
 
 const saveForm = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const cformData = new FormData(e.target);
     const entry = {};
     entry['checkIn'] = dateAndTimeToDate(formData.get('checkInDate'), formData.get('checkInTime'));
     entry['km'] = toString('km');
@@ -113,7 +113,7 @@ const createActions = (entry) => {
 
     const editButton = document.createElement('button');
     editButton.innerText = 'Edit';
-    editButton.addEventListener('click', () => editEntry(entry));
+    editButton.addEventListener('click', () => editEntry(entry), window.location.href=("edit.html"));
     cell.appendChild(editButton);
 
     return cell;
